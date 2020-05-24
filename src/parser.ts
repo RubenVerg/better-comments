@@ -15,6 +15,8 @@ interface Contributions {
 		tag: string;
 		color: string;
 		strikethrough: boolean;
+		bold: boolean;
+		italics: boolean;
 		backgroundColor: string;
 	}];
 }
@@ -414,6 +416,12 @@ export class Parser {
 			let options: vscode.DecorationRenderOptions = { color: item.color, backgroundColor: item.backgroundColor };
 			if (item.strikethrough) {
 				options.textDecoration = "line-through";
+			}
+			if (item.bold) {
+				options.fontWeigth = "bolder";
+			}
+			if (item.italics) {
+				options.fontStyle = "italic";
 			}
 
 			let escapedSequence = item.tag.replace(/([()[{*+.$^\\|?])/g, '\\$1');
